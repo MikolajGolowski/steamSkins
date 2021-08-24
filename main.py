@@ -30,7 +30,7 @@ for i in range(0, len(names)):
         try:
             browser = webdriver.Chrome('C:\PATH\chromedriver')
             browser.get(adress)
-            time.sleep(5)
+            time.sleep(10)
             processed_page = BeautifulSoup(browser.page_source, 'html.parser')
             if ("You've made too many requests recently. Please wait and try your request again later." in browser.page_source or "Dokonano zbyt wielu żądań. Proszę poczekać i spróbować później." in browser.page_source):
                 print('429 error - czekam 3 minuty')
@@ -49,7 +49,7 @@ for i in range(0, len(names)):
                     break
                 page_number += 1
             #if(page_number == 3):
-            break
+            #break
         except Exception as e:
             print(e)
             page_number = page_number - 1
@@ -74,3 +74,4 @@ df.head()
 sns.catplot(x="bron", y="cena", kind="violin", data=df).savefig('img.pdf')
 sns.catplot(x="bron", y="cena", kind="violin", data=df[df.cena < 100]).savefig('img2.pdf')
 sns.catplot(x="bron", y="cena", kind="violin", data=df[df.cena < 10]).savefig('img3.pdf')
+sns.catplot(x="bron", y="cena", kind="violin", data=df[df.cena < 50]).savefig('img4.pdf')
